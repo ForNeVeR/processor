@@ -14,7 +14,7 @@ fn to_wchar(str : &str) -> Vec<u16> {
     OsStr::new(str).encode_wide(). chain(Some(0).into_iter()).collect()
 }
 
-unsafe fn messageLoop() -> i32 {
+unsafe fn messageLoop() {
     let instance = kernel32::GetModuleHandleW(ptr::null());
     let class = winapi::WNDCLASSW {
         style: 0,
@@ -43,7 +43,28 @@ unsafe fn messageLoop() -> i32 {
         instance,
         ptr::null_mut());
 
-    0
+    let mut message = winapi::MSG {
+        hwnd: ptr::null_mut(),
+        message: 0,
+        wParam: 0,
+        lParam: 0,
+        time: 0,
+        pt: winapi::POINT {
+            x: 0,
+            y: 0
+        }
+    };
+    loop {
+        let status = user32::GetMessageW(&mut message, ptr::null_mut(), 0, 0);
+        match status {
+            -1 => { panic!("GetMessageW error: {}", kernel32::GetLastError()); },
+            0 =>  { break; },
+            _ => {}
+        };
+
+        user32::TranslateMessage(&message);
+        user32::DispatchMessageW(&message);
+    }
 }
 
 unsafe extern "system" fn wndProc(
