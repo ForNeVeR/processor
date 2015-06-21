@@ -7,7 +7,8 @@ use std::ptr;
 use string;
 
 const DUMMY_CLASS_NAME: &'static str = "processor_class";
-const HWND_MESSAGE: winapi::HWND = (0-3) as winapi::HWND;
+const HWND_MESSAGE_: isize = -3;
+const HWND_MESSAGE: winapi::HWND = HWND_MESSAGE_ as winapi::HWND;
 
 unsafe fn get_instance() -> winapi::HINSTANCE {
     let instance = kernel32::GetModuleHandleW(ptr::null());
@@ -52,7 +53,7 @@ pub unsafe fn create_window(wnd_proc: winapi::WNDPROC) -> winapi::HWND {
         0,
         HWND_MESSAGE,
         ptr::null_mut(),
-        instance,
+        ptr::null_mut(),
         ptr::null_mut());
     if window.is_null() {
         panic!("CreateWindowExW error: {}", kernel32::GetLastError());

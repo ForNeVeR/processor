@@ -48,8 +48,8 @@ unsafe fn message_loop() {
 unsafe extern "system" fn wnd_proc(
     window: winapi::HWND,
     message: winapi::UINT,
-    wParam: winapi::WPARAM,
-    lParam: winapi::LPARAM) -> winapi::LRESULT {
+    w_param: winapi::WPARAM,
+    l_param: winapi::LPARAM) -> winapi::LRESULT {
     println!("Message received: {}", message);
-    0
+    user32::DefWindowProcW(window, message, w_param, l_param)
 }
