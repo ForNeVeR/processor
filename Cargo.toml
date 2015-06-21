@@ -2,3 +2,8 @@
 name = "processor"
 version = "0.1.0"
 authors = ["Friedrich von Never <friedrich@fornever.me>"]
+
+[dependencies]
+winapi = "0.1.22"
+user32-sys = "0.1.1"
+kernel32-sys = "0.1.1"
