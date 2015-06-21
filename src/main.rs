@@ -28,6 +28,20 @@ unsafe fn messageLoop() -> i32 {
         lpszMenuName: ptr::null_mut(),
         lpszClassName: to_wchar("HiddenWindowClass").as_ptr()
     };
+    let classAtom = user32::RegisterClassW(&class);
+    let window = user32::CreateWindowExW(
+        0,
+        classAtom as winapi::LPCWSTR,
+        ptr::null_mut(),
+        0,
+        0,
+        0,
+        0,
+        0,
+        ptr::null_mut(),
+        ptr::null_mut(),
+        instance,
+        ptr::null_mut());
 
     0
 }
