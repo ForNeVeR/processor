@@ -1,4 +1,4 @@
-processor [![BuildStatus](https://travis-ci.org/ForNeVeR/processor.png?branch=develop)](https://travis-ci.org/ForNeVeR/processor)
+processor [![Build status](https://ci.appveyor.com/api/projects/status/bbahnfefg23jg78i/branch/develop?svg=true)](https://ci.appveyor.com/project/ForNeVeR/processor/branch/develop)
 ==========
 [![ForNeVeR/processor](http://issuestats.com/github/ForNeVeR/processor/badge/pr?style=flat-square)](http://www.issuestats.com/github/ForNeVeR/processor) [![ForNeVeR/processor](http://issuestats.com/github/ForNeVeR/processor/badge/issue?style=flat-square)](http://www.issuestats.com/github/ForNeVeR/processor)
 
